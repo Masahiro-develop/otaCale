@@ -2,7 +2,7 @@ import { Button, Input, Space } from "antd";
 import React from "react";
 import styled from "styled-components";
 
-import logoImg from "../../images/オタカレロゴ正方形.png"
+import logoImg from "../../images/iconLogo.png"
 
 const Outer = styled.div`
     height: 100vh;
