@@ -26,6 +26,7 @@ const TitleImg = styled.img`
 
 const Title = styled.h1`
     font-weight: 900;
+    font-size: 2.5em;
 `;
 
 const StyledForm = styled.form`
@@ -48,7 +49,7 @@ const RegistrationLink = styled.h2`
     margin-top: 25px;
 `;
 
-export default function CreateAcount(props) {
+export default function Login(props) {
 
     return (
         <div>
@@ -58,18 +59,18 @@ export default function CreateAcount(props) {
                 <Inner>
                     
                         <TitleImg src={logoImg} alt="ロゴ" />
-                        <Title>オタカレへようこそ</Title>
+                        <Title>ログイン</Title>
 
                     <StyledForm>
                             <StyledInput type="email" placeholder="メールアドレス" />
 
                             <StyledInput type="password" placeholder="パスワード" />
 
-                        <Button type="primary">登録</Button>
+                        <Button type="primary">ログイン</Button>
                     </StyledForm>
-
+                        <RegistrationLink>まだ登録されていない方はこちら</RegistrationLink>
                 </Inner>
-                <RegistrationLink>ログインはこちら</RegistrationLink>
+                
             </Space>
             </Outer>
 
