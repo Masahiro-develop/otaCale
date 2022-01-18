@@ -5,11 +5,18 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  height: 100%;
   font-weight: 500;
+  background: #30475E;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.ant-layout-header,
+.ant-layout-content,
+.ant-layout-footer {
+  background: #F5F5F5;
+  padding: 0;
 }
