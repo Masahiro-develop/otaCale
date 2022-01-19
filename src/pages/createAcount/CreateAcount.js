@@ -9,6 +9,7 @@ const Outer = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: #F5F5F5;
 `;
 
 const Inner = styled.div`
@@ -44,6 +45,10 @@ const StyledInput = styled(Input)`
     border-radius: 5px;
 `;
 
+const StyledSpace = styled(Space)`
+    display: contents;
+`;
+
 const RegistrationLink = styled.h2`
     margin-top: 25px;
 `;
@@ -54,7 +59,7 @@ export default function CreateAcount(props) {
         <div>
 
             <Outer>
-            <Space align="center">
+            <StyledSpace align="center">
                 <Inner>
                     
                         <TitleImg src={logoImg} alt="ロゴ" />
@@ -70,7 +75,7 @@ export default function CreateAcount(props) {
 
                 </Inner>
                 <RegistrationLink>ログインはこちら</RegistrationLink>
-            </Space>
+            </StyledSpace>
             </Outer>
 
         </div>

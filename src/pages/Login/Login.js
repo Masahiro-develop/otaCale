@@ -9,6 +9,11 @@ const Outer = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: #F5F5F5;
+`;
+
+const StyledSpace = styled(Space)`
+    display: contents;
 `;
 
 const Inner = styled.div`
@@ -55,23 +60,22 @@ export default function Login(props) {
         <div>
 
             <Outer>
-            <Space align="center">
-                <Inner>
+                <StyledSpace align="center">
+                    <Inner>
                     
                         <TitleImg src={logoImg} alt="ロゴ" />
                         <Title>ログイン</Title>
 
-                    <StyledForm>
+                        <StyledForm>
                             <StyledInput type="email" placeholder="メールアドレス" />
 
                             <StyledInput type="password" placeholder="パスワード" />
 
-                        <Button type="primary">ログイン</Button>
-                    </StyledForm>
+                            <Button type="primary">ログイン</Button>
+                        </StyledForm>
                         <RegistrationLink>まだ登録されていない方はこちら</RegistrationLink>
-                </Inner>
-                
-            </Space>
+                    </Inner>
+                </StyledSpace>
             </Outer>
 
         </div>
