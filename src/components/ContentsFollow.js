@@ -33,6 +33,16 @@ export default function ContentsFollow(props) {
 
     const array = [0, 1, 2];
 
+    function handleChangeChecked(e) {
+        const content = e.target.id
+        if (e.target.checked) {
+            const pushedList = [...props.checkedList, content]
+            props.setCheckedList(pushedList);
+        } else {
+            props.setCheckedList(props.checkedList.filter((a) => a[1] != content[1]));
+        }
+    }
+
     function handleChange(e) {
         const index = e.target.id;
         eval("setIsVisible" + index + "(!isVisible" + index + ");");
@@ -40,12 +50,12 @@ export default function ContentsFollow(props) {
         result.forEach((number) => eval("setIsVisible" + number + "(false);"));
     };
     
-    function createMenu(subCategory) {
+    function createMenu(category, subCategory) {
         return (
             <Menu>
                 {subCategory.map((contentsName, index) =>
                     <Menu.Item key={index}>
-                        <Checkbox>{contentsName}</Checkbox>
+                        <Checkbox  onChange={handleChangeChecked} id={[category, contentsName]}>{contentsName}</Checkbox>
                     </Menu.Item>
                 )}
             </Menu>
@@ -55,7 +65,7 @@ export default function ContentsFollow(props) {
         <Outer>
             {
                 categories.map((category, index) =>
-                    <Dropdown overlay={createMenu(props.contentsList[category])} visible={eval("isVisible" + index)} key={index}>
+                    <Dropdown overlay={createMenu(category, props.contentsList[category])} visible={eval("isVisible" + index)} key={index}>
                         <StyledButton id={index} onClick={handleChange}><div id={index}>{category} ▽</div></StyledButton>
                     </Dropdown>
                 )
