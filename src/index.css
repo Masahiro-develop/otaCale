@@ -20,3 +20,7 @@ code {
   background: #F5F5F5;
   padding: 0;
 }
+
+.ant-layout {
+    display: block;
+}

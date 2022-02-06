@@ -1,4 +1,5 @@
 import { CopyrightOutlined } from "@ant-design/icons/lib/icons";
+import { Col, Row } from "antd";
 import React from "react";
 import styled from "styled-components";
 
@@ -11,7 +12,7 @@ const Outer = styled.div`
     `;
 
 const Logo = styled.img`
-    width: 80%;
+    width: 90%;
     margin: 15px;
     `;
 
@@ -23,7 +24,11 @@ const CopyRight = styled.h3`
 export default function CustomFooter(props) {
     return (
         <Outer>
-            <Logo src={logo} />
+            <Row justify="center">
+                <Col span={24} md={12}>
+                    <Logo src={logo} />
+                </Col>
+            </Row>
             <CopyRight>
                 Masahiro Hayashi <CopyrightOutlined />2021
             </CopyRight>

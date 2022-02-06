@@ -6,6 +6,7 @@ import styled from "styled-components";
 import ContentsFollow from "../../components/ContentsFollow";
 import CustomFooter from "../../components/CustomFooter";
 import CustomHeader from "../../components/CustomHeader";
+import { contentsList } from "../../data";
 
 const Outer = styled.div`
     height: 80vh;
@@ -23,11 +24,6 @@ const SendButton = styled(Button)`
 `;
 
 export default function ContentsSelection(props) {
-    const contentsList = {
-        "THE IDOLM@STERシリーズ": ["765 ALL STAR", "ミリオンライブ!", "シンデレラガールズ", "シャイニーカラーズ", "side M"],
-        "BanG Dream!": ["Poppin'Party", "Roselia", "RAISE A SUILEN"],
-        "ラブライブ!シリーズ": ["μ's", "Aqours", "虹ヶ咲学園スクールアイドル同好会", "Liella!"]
-    };
 
     return (
         <div>

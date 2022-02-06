@@ -1,0 +1,22 @@
+.tile {
+    height: 8em;
+    display: flex;
+    justify-content: center;
+}
+
+.swal-button--defeat{
+    background-color: #30475E;
+}
+
+.fc-daygrid-day-number {
+    color: #30475E;
+}
+
+.fc-col-header-cell-cushion{
+    color: #30475E;
+}
+
+.fc-event-main {
+    word-wrap: break-word;
+	white-space: normal;
+}
