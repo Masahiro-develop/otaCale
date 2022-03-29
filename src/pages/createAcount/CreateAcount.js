@@ -1,6 +1,11 @@
 import { Button, Input, Space } from "antd";
-import React from "react";
+import cryptoJs from "crypto-js";
+import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
+import { onValue, ref, set } from "firebase/database";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { database } from "../../firebase";
 
 import logoImg from "../../images/iconLogo.png"
 
@@ -55,26 +60,64 @@ const RegistrationLink = styled.h2`
 
 export default function CreateAcount(props) {
 
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+
+    const navigate = useNavigate();
+    
+    function createAcount() {
+        console.log(email + password);
+        const emailPattern = /^[A-Za-z0-9]{1}[A-Za-z0-9_.-]*@{1}[A-Za-z0-9_.-]+.[A-Za-z0-9]+$/;
+        if (!emailPattern.test(email)) {
+            alert("正しいメール形式で入力してください");
+        } else if (password.length < 8) {
+            alert("パスワードは8文字以上で入力してください");
+        } else {
+            const auth = getAuth();
+            createUserWithEmailAndPassword(auth, email, password)
+                .then((userCredential) => {
+                    // サインイン後の処理
+                    const user = userCredential.user;
+
+                    const secretKey = process.env.REACT_APP_FIREBASE_SECRET_KEY;
+                    const encryptedEmail = cryptoJs.AES.encrypt(user.email, secretKey).toString();
+
+                    const userRef = ref(database, "/users/" + user.uid);
+                    const submitUserData = {
+                        email: encryptedEmail
+                    };
+                    console.log(submitUserData);
+                    set(userRef, submitUserData)
+                    navigate("/contentsSelection");
+                })
+                .catch((error) => {
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+                    console.log("errorCode: " + errorCode + " errorMessage: " + errorMessage);
+                    if (error.code === "auth/email-already-in-use") {
+                        alert("このメールアドレスは既に使用されています。")
+                    }
+                });
+        }
+    }
+
     return (
         <div>
 
             <Outer>
             <StyledSpace align="center">
                 <Inner>
-                    
                         <TitleImg src={logoImg} alt="ロゴ" />
                         <Title>オタカレへようこそ</Title>
-
                     <StyledForm>
-                            <StyledInput type="email" placeholder="メールアドレス" />
+                            <StyledInput autoComplete="email" type="email" placeholder="メールアドレス" value={email} onChange={(e)=>setEmail(e.target.value)} />
 
-                            <StyledInput type="password" placeholder="パスワード" />
+                            <StyledInput autoComplete="new-password" type="password" placeholder="パスワード" value={password} onChange={(e)=>setPassword(e.target.value)} />
 
-                        <Button type="primary">登録</Button>
+                        <Button type="primary" onClick={createAcount}>登録</Button>
                     </StyledForm>
-
-                </Inner>
                 <RegistrationLink>ログインはこちら</RegistrationLink>
+                </Inner>
             </StyledSpace>
             </Outer>
 

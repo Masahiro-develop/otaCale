@@ -1,5 +1,7 @@
 import { Button, Input, Space } from "antd";
-import React from "react";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import React, {useState} from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import logoImg from "../../images/iconLogo.png"
@@ -56,6 +58,25 @@ const RegistrationLink = styled.h2`
 
 export default function Login(props) {
 
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+
+    const navigate = useNavigate()
+
+    function login() {
+        const auth = getAuth();
+        signInWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+                navigate("/");
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                alert(errorMessage);
+            });
+
+    }
+
     return (
         <div>
 
@@ -67,11 +88,11 @@ export default function Login(props) {
                         <Title>ログイン</Title>
 
                         <StyledForm>
-                            <StyledInput type="email" placeholder="メールアドレス" />
+                            <StyledInput type="email" placeholder="メールアドレス" value={email} onChange={(e)=>{setEmail(e.target.value)}} />
 
-                            <StyledInput type="password" placeholder="パスワード" />
+                            <StyledInput type="password" placeholder="パスワード" value={password} onChange={(e)=>{setPassword(e.target.value)}} />
 
-                            <Button type="primary">ログイン</Button>
+                            <Button type="primary" onClick={login}>ログイン</Button>
                         </StyledForm>
                         <RegistrationLink>まだ登録されていない方はこちら</RegistrationLink>
                     </Inner>

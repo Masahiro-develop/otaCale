@@ -24,3 +24,4 @@ yarn-error.log*
 
 #個人的に追加したもの
 data.js
+/functions
