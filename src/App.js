@@ -3,7 +3,7 @@ import Creation from './pages/creation/Creation';
 import Main from './pages/Main/Main';
 import ContentsSelection from './pages/contentsSelection/ContentsSelection';
 import CreateAcount from "./pages/createAcount/CreateAcount";
-import Login from './pages/Login/Login';
+import Login from './pages/login/Login';
 import jaJP from 'antd/lib/locale-provider/ja_JP';
 import { ConfigProvider} from 'antd';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
