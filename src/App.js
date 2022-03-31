@@ -11,14 +11,14 @@ import {useAuthContext, AuthProvider} from "./AuthContext/AuthContext"
 
 function App() {
 
-    // function Auth({ children }) {
-    //     const { user } = useAuthContext();
-    //     if (user) {
-    //       return <div>{children}</div>
-    //     } else {
-    //       return <Navigate to="/login" />
-    //     }
-    //   }
+    function Auth({ children }) {
+        const { user } = useAuthContext();
+        if (user) {
+          return <div>{children}</div>
+        } else {
+          return <Navigate to="/login" />
+        }
+      }
       
 
     return (
@@ -27,12 +27,11 @@ function App() {
                 <ConfigProvider locale={jaJP}>
                     <BrowserRouter>
                         <Routes>
-                            <Route path="/" element={<Main />} />
                             <Route path='/login' element={<Login />} />
                             <Route path='/createAcount' element={<CreateAcount />} />
+                            <Route path="/" element={<Main />} />
                             <Route path='/contentsSelection' element={<ContentsSelection />} />
-                            <Route path='/create' element={<Creation />} />
-                            {/* <Route path='/614f2eaaffaf673b5cb5258a36e27c17905e85d3' element={<Creation />} /> */}
+                            <Route path='/614f2eaaffaf673b5cb5258a36e27c17905e85d3' element={<Creation />} />
                         </Routes>
                     </BrowserRouter>
                 </ConfigProvider>

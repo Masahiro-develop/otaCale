@@ -2,7 +2,7 @@ import { CheckSquareOutlined } from "@ant-design/icons/lib/icons";
 import { Button } from "antd";
 import Layout, { Content, Footer, Header } from "antd/lib/layout/layout";
 import { get, onValue, push, ref, set } from "firebase/database";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import ContentsFollow from "../../components/ContentsFollow";
 import CustomFooter from "../../components/CustomFooter";
@@ -35,6 +35,13 @@ export default function ContentsSelection(props) {
     const navigate = useNavigate();
 
     const { user } = useAuthContext();
+
+    useEffect(() => {
+        document.title = "コンテンツセレクト";
+        if (user == null) {
+            navigate("/login");            
+        }
+    }, [])
 
     function submitContents() {
         const submitLikeContent = {};

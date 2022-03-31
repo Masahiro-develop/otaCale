@@ -2,9 +2,10 @@ import { Button, Input, Space } from "antd";
 import cryptoJs from "crypto-js";
 import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
 import { onValue, ref, set } from "firebase/database";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { useAuthContext } from "../../AuthContext/AuthContext";
 import { database } from "../../firebase";
 
 import logoImg from "../../images/iconLogo.png"
@@ -64,6 +65,15 @@ export default function CreateAcount(props) {
     const [password, setPassword] = useState("");
 
     const navigate = useNavigate();
+
+    const { user } = useAuthContext();
+
+    useEffect(() => {
+        document.title = "アカウント作成";
+        if (user) {
+            navigate("/");
+        }
+    }, []);
     
     function createAcount() {
         console.log(email + password);

@@ -1,8 +1,9 @@
 import { Button, Input, Space } from "antd";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { useAuthContext } from "../../AuthContext/AuthContext";
 
 import logoImg from "../../images/iconLogo.png"
 
@@ -61,7 +62,16 @@ export default function Login(props) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-    const navigate = useNavigate()
+    const { user } = useAuthContext();
+
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        document.title = "ログイン";
+        if (user) {
+            navigate("/");
+        }
+    }, []);
 
     function login() {
         const auth = getAuth();

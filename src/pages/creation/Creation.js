@@ -8,6 +8,7 @@ import ContentsFollow from "../../components/ContentsFollow";
 import { contentsList, contentsColor } from "../../data";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { useAuthContext } from "../../AuthContext/AuthContext";
 
 const Outer = styled.div`
     min-height: 100vh;
@@ -68,18 +69,18 @@ export default function Creation(props) {
 
     const navigate = useNavigate();
 
+    const {user} = useAuthContext();
+    const uid = user.uid;
+    useEffect(() => {
+        document.title = "カレンダー登録";
+        if (uid != "2PM5V8fDXFUlPYIN2d431k4T7ik1") {
+            navigate("/")
+        }
+    }, [])
+
     function setCalendar(calendar) {
         return new Promise((resolve) => {
             const eventsRef = ref(database, "/events/" + calendar["category"] + "/" + calendar["subCategory"]);
-            // onValue(eventsRef, (snapshot) => {
-            //     let registeredEvent = snapshot.val();
-            //     if (registeredEvent === null) {
-            //         registeredEvent = {};
-            //     }
-            //     registeredEvent[calendar["title"]] = calendar;
-            //     set(eventsRef, registeredEvent);
-            //     return resolve(registeredEvent)
-            // });
             push(eventsRef, calendar);
             resolve(calendar)
         });
@@ -102,7 +103,7 @@ export default function Creation(props) {
                 "subCategory": subCategory,
                 "url": url,
                 "start": start.getTime(),
-                "end": isCheckEnd ? isCheckEndTime ? endDate + "T" + endTime : endDate : start.getTime(),
+                "end": isCheckEnd ? isCheckEndTime ? endDate + "T" + endTime : endDate : start.getTime() + 1,
                 "backgroundColor": color,
             }
             swal({

@@ -12,6 +12,7 @@ import { getAuth } from "firebase/auth";
 import { onValue, ref } from "firebase/database";
 import { database } from "../../firebase";
 import { useAuthContext } from "../../AuthContext/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 const Outer = styled.div`
     min-height: 100%;
@@ -44,35 +45,40 @@ export default function Main(props) {
     const auth = getAuth();
     const user = auth.currentUser;
 
+    const navigate = useNavigate();
 
-    const contentsRef = ref(database, "/users/" + user.uid + "/likeContent");
     
     useEffect(() => {
-        let copyEvents = [];
-        onValue(contentsRef, (snapshot) => {
-            const likeContents = snapshot.val();
-            const categories = Object.keys(likeContents);
-            for (const index in categories) {
-                const category = categories[index]
-                const subCategories = likeContents[category]
-                for (const index in subCategories) {
-                    const subCategory = subCategories[index]
-                    onValue(ref(database, "/events/" + category + "/" + subCategory), (snapshot) => {
-                        const event = snapshot.val();
-                        if (event != null) {
-                            copyEvents = { ...copyEvents, ...event}
-                            setPushEvents(Object.values(copyEvents));
+        if (user) {
+            let copyEvents = [];
+            const contentsRef = ref(database, "/users/" + user.uid + "/likeContent");
+            onValue(contentsRef, (snapshot) => {
+                const likeContents = snapshot.val();
+                const categories = Object.keys(likeContents);
+                for (const index in categories) {
+                    const category = categories[index]
+                    const subCategories = likeContents[category]
+                    for (const index in subCategories) {
+                        const subCategory = subCategories[index]
+                        onValue(ref(database, "/events/" + category + "/" + subCategory), (snapshot) => {
+                            const event = snapshot.val();
+                            if (event != null) {
+                                copyEvents = { ...copyEvents, ...event }
+                                setPushEvents(Object.values(copyEvents));
+                            }
+                        });
+                        if (index == subCategories.length - 1) {
+                            setIsEventLoading(false);
                         }
-                    });
-                    if (index == subCategories.length - 1) {
-                        setIsEventLoading(false);
+                    }
+                    if (index == categories.length - 1) {
+                        setIsContentsLoading(false);
                     }
                 }
-                if (index == categories.length - 1) {
-                    setIsContentsLoading(false);
-                }
-            }
-        })
+            })
+        } else {
+            navigate("/login");
+        }
     }, []);
 
     useEffect(() => {
