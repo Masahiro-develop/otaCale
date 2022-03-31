@@ -8,6 +8,7 @@ import jaJP from 'antd/lib/locale-provider/ja_JP';
 import { ConfigProvider} from 'antd';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import {useAuthContext, AuthProvider} from "./AuthContext/AuthContext"
+import About from './pages/about/About';
 
 function App() {
 
@@ -27,6 +28,7 @@ function App() {
                 <ConfigProvider locale={jaJP}>
                     <BrowserRouter>
                         <Routes>
+                            <Route path='about' element={<About />} />
                             <Route path='/login' element={<Login />} />
                             <Route path='/createAcount' element={<CreateAcount />} />
                             <Route path="/" element={<Main />} />

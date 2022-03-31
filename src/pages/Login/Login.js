@@ -68,9 +68,6 @@ export default function Login(props) {
 
     useEffect(() => {
         document.title = "ログイン";
-        if (user) {
-            navigate("/");
-        }
     }, []);
 
     function login() {
@@ -104,7 +101,7 @@ export default function Login(props) {
 
                             <Button type="primary" onClick={login}>ログイン</Button>
                         </StyledForm>
-                        <RegistrationLink>まだ登録されていない方はこちら</RegistrationLink>
+                        <RegistrationLink>まだ登録されていない方は<a href="#" onClick={()=>{navigate("/login")}}>こちら</a></RegistrationLink>
                     </Inner>
                 </StyledSpace>
             </Outer>

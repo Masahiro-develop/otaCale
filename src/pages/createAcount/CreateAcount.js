@@ -33,6 +33,7 @@ const TitleImg = styled.img`
 
 const Title = styled.h1`
     font-weight: 900;
+    font-size: 2.5em;
 `;
 
 const StyledForm = styled.form`
@@ -126,7 +127,7 @@ export default function CreateAcount(props) {
 
                         <Button type="primary" onClick={createAcount}>登録</Button>
                     </StyledForm>
-                <RegistrationLink>ログインはこちら</RegistrationLink>
+                <RegistrationLink>ログインは<a href="#" onClick={()=>{navigate("/login")}}>こちら</a></RegistrationLink>
                 </Inner>
             </StyledSpace>
             </Outer>

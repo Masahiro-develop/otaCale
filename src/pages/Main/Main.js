@@ -42,8 +42,7 @@ export default function Main(props) {
 
     const calendarRef = useRef(null);
 
-    const auth = getAuth();
-    const user = auth.currentUser;
+    const { user } = useAuthContext();
 
     const navigate = useNavigate();
 
@@ -83,7 +82,6 @@ export default function Main(props) {
 
     useEffect(() => {
         setEvents(pushEvents);
-        console.log(pushEvents);
     }, [pushEvents])
 
 
@@ -142,9 +140,3 @@ export default function Main(props) {
         </Outer>
     )
 }
-// var tooltip = new (info.el, {
-//     title: info.event.extendedProps.description,
-//     placement: 'top',
-//     trigger: 'hover',
-//     container: 'body'
-// });
