@@ -116,20 +116,20 @@ export default function CreateAcount(props) {
         <div>
 
             <Outer>
-            <StyledSpace align="center">
-                <Inner>
+                <StyledSpace align="center">
+                    <Inner>
                         <TitleImg src={logoImg} alt="ロゴ" />
-                        <Title>オタカレへようこそ</Title>
-                    <StyledForm>
-                            <StyledInput autoComplete="email" type="email" placeholder="メールアドレス" value={email} onChange={(e)=>setEmail(e.target.value)} />
-
-                            <StyledInput autoComplete="new-password" type="password" placeholder="パスワード" value={password} onChange={(e)=>setPassword(e.target.value)} />
-
-                        <Button type="primary" onClick={createAcount}>登録</Button>
-                    </StyledForm>
-                <RegistrationLink>ログインは<a href="#" onClick={()=>{navigate("/login")}}>こちら</a></RegistrationLink>
-                </Inner>
-            </StyledSpace>
+                        <Title>OtaCaleへようこそ</Title>
+                        <StyledForm>
+                            <StyledInput autoComplete="email" type="email" placeholder="メールアドレス" value={email} onChange={(e) => setEmail(e.target.value)} />
+                            <StyledInput autoComplete="new-password" type="password" placeholder="パスワード" value={password} onChange={(e) => setPassword(e.target.value)} />
+                            <Button type="primary" onClick={createAcount}>登録</Button><br />本サービスの利用を開始した場合、<a href="#" onClick={()=>window.open("/termsOfUse")}>利用規約</a>に同意したものとみなします。
+                            
+                        </StyledForm>
+                        
+                        <RegistrationLink>ログインは<a href="#" onClick={() => { navigate("/login") }}>こちら</a></RegistrationLink>
+                    </Inner>
+                </StyledSpace>
             </Outer>
 
         </div>

@@ -6,21 +6,12 @@ import CreateAcount from "./pages/createAcount/CreateAcount";
 import Login from './pages/login/Login';
 import jaJP from 'antd/lib/locale-provider/ja_JP';
 import { ConfigProvider} from 'antd';
-import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
-import {useAuthContext, AuthProvider} from "./AuthContext/AuthContext"
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import {AuthProvider} from "./AuthContext/AuthContext"
 import About from './pages/about/About';
+import TermsOfUse from './pages/termsOfUse/termsOfUse';
 
 function App() {
-
-    function Auth({ children }) {
-        const { user } = useAuthContext();
-        if (user) {
-          return <div>{children}</div>
-        } else {
-          return <Navigate to="/login" />
-        }
-      }
-      
 
     return (
         <div className="App">
@@ -29,6 +20,7 @@ function App() {
                     <BrowserRouter>
                         <Routes>
                             <Route path='about' element={<About />} />
+                            <Route path='termsOfUse' element={<TermsOfUse />} />
                             <Route path='/login' element={<Login />} />
                             <Route path='/createAcount' element={<CreateAcount />} />
                             <Route path="/" element={<Main />} />

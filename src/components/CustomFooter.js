@@ -1,6 +1,7 @@
 import { CopyrightOutlined } from "@ant-design/icons/lib/icons";
 import { Col, Row } from "antd";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import logo from "../images/whiteLogo.png"
@@ -21,7 +22,12 @@ const CopyRight = styled.h3`
     color: #F5F5F5;
 `;
 
+const Link = styled.a`
+    margin: 10px 0;
+`;
+
 export default function CustomFooter(props) {
+    const navigate = useNavigate()
     return (
         <Outer>
             <Row justify="center">
@@ -30,7 +36,9 @@ export default function CustomFooter(props) {
                 </Col>
             </Row>
             <CopyRight>
-                Masahiro Hayashi <CopyrightOutlined />2021
+                Masahiro Hayashi <CopyrightOutlined />2021<br />
+                <Link href="#" onClick={() => window.open("/termsOfUse")}>利用規約</Link><br />
+                <Link href="#" onClick={navigate("/about")}>OtaCaleとは</Link>
             </CopyRight>
         </Outer>
     )

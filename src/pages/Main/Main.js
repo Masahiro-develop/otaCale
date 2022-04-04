@@ -114,11 +114,10 @@ export default function Main(props) {
                                             if (info.event.endStr != "") {
                                             endDate = new Date(info.event.endStr).toLocaleString();
                                             }
-                                            console.log(info.event)
                                             swal({
                                                 title: info.event.title,
                                                 text:
-                                                    `ジャンル: ${info.event.extendedProps.category} ${info.event.extendedProps.subCategory}\n日時: ${startDate} ~ ${endDate}`,
+                                                    `ジャンル: ${info.event.extendedProps.category} ${info.event.extendedProps.subCategory}\n日時: ${startDate} ~ ${ startDate != endDate ? endDate : ""}`,
                                                 buttons: {
                                                     cancel: "閉じる",
                                                     defeat: "公式サイトを開く"

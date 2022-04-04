@@ -2,7 +2,6 @@ import { Button, Row, Col } from "antd";
 import React from "react";
 import styled from "styled-components";
 import { Link, useNavigate } from "react-router-dom";
-
 import avatorImg from "../images/iconLogo.png";
 import { getAuth } from "firebase/auth";
 
