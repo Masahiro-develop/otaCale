@@ -37,8 +37,11 @@ export default function CustomFooter(props) {
             </Row>
             <CopyRight>
                 Masahiro Hayashi <CopyrightOutlined />2021<br />
-                <Link href="#" onClick={() => window.open("/termsOfUse")}>利用規約</Link><br />
-                <Link href="#" onClick={navigate("/about")}>OtaCaleとは</Link>
+                <Row justify="space-around">
+                    <Col><Link href="#" onClick={() => window.open("/termsOfUse")}>利用規約</Link></Col>
+                    <Col><Link href="#" onClick={()=>navigate("/about")}>OtaCaleとは</Link></Col>
+                    <Col><Link href="#" onClick={()=>navigate("/")}>ホームへ戻る</Link></Col>
+                </Row>
             </CopyRight>
         </Outer>
     )

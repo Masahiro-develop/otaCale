@@ -19,8 +19,8 @@ function App() {
                 <ConfigProvider locale={jaJP}>
                     <BrowserRouter>
                         <Routes>
-                            <Route path='about' element={<About />} />
-                            <Route path='termsOfUse' element={<TermsOfUse />} />
+                            <Route path='/about' element={<About />} />
+                            <Route path='/termsOfUse' element={<TermsOfUse />} />
                             <Route path='/login' element={<Login />} />
                             <Route path='/createAcount' element={<CreateAcount />} />
                             <Route path="/" element={<Main />} />

@@ -48,6 +48,7 @@ export default function Main(props) {
 
     
     useEffect(() => {
+        document.title = "カレンダー";
         if (user) {
             let copyEvents = [];
             const contentsRef = ref(database, "/users/" + user.uid + "/likeContent");

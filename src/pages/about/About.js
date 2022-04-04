@@ -5,6 +5,7 @@ import smartphoneImage1 from "../../images/smartphoneScreenShot.png";
 import smartphoneImage2 from "../../images/smartphoneScreenShot2.png";
 import emailImage from "../../images/mailSample.png";
 import { Button, Col, Row } from "antd";
+import { useNavigate } from "react-router-dom";
 
 const Outer = styled.div`
     min-height: 100vh;
@@ -66,6 +67,8 @@ const Footer = styled.div`
 
 export default function About() {
 
+    const navigate = useNavigate();
+
     return (
         <Outer>
             <Inner>
@@ -108,7 +111,7 @@ export default function About() {
                 <Content>
                     定期的にカレンダーを確認しなくても、普段のメール確認のついでにライブのスケジュール管理もできちゃいます。
                 </Content>
-                <CustomButton size="large" shape="round">登録</CustomButton>
+                <CustomButton size="large" shape="round" onClick={()=>{navigate("/createAcount")}}>登録</CustomButton>
                 <hr />
                 <Heading>
                     OtaCaleを作った理由
