@@ -78,8 +78,12 @@ export default function Login(props) {
             })
             .catch((error) => {
                 const errorCode = error.code;
-                const errorMessage = error.message;
-                alert(errorMessage);
+                if (errorCode == 'auth/wrong-password') {
+                    alert('パスワードが違います。');
+                };
+                if (errorCode == 'auth/user-not-found') {
+                    alert('メールアドレスが存在しません。');
+                };
             });
 
     }

@@ -1,4 +1,4 @@
-import { CheckSquareOutlined } from "@ant-design/icons/lib/icons";
+import { CheckSquareOutlined, ExclamationCircleOutlined } from "@ant-design/icons/lib/icons";
 import { Button } from "antd";
 import Layout, { Content, Footer, Header } from "antd/lib/layout/layout";
 import { get, onValue, push, ref, set } from "firebase/database";
@@ -44,22 +44,27 @@ export default function ContentsSelection(props) {
     }, [])
 
     function submitContents() {
-        const submitLikeContent = {};
-        checkedList.forEach((content) => {
-            if (submitLikeContent[content[0]] === undefined) {
-                submitLikeContent[content[0]] = [content[1]];
-            } else {
-                submitLikeContent[content[0]].push(content[1]);
-            };
-        });
-        const cryptedEmail = cryptoJs.AES.encrypt(user.email, process.env.REACT_APP_FIREBASE_SECRET_KEY).toString();
-        const setData = {
-            likeContent: submitLikeContent,
-            email: cryptedEmail
+        console.log(checkedList);
+        if (checkedList.length == 0) {
+            alert('1つ以上選択をお願いします。')
+        } else {
+            const submitLikeContent = {};
+            checkedList.forEach((content) => {
+                if (submitLikeContent[content[0]] === undefined) {
+                    submitLikeContent[content[0]] = [content[1]];
+                } else {
+                    submitLikeContent[content[0]].push(content[1]);
+                };
+            });
+            const cryptedEmail = cryptoJs.AES.encrypt(user.email, process.env.REACT_APP_FIREBASE_SECRET_KEY).toString();
+            const setData = {
+                likeContent: submitLikeContent,
+                email: cryptedEmail
+            }
+            const contentsRef = ref(database, "/users/" + user.uid);
+            set(contentsRef, setData);
+            navigate("/");
         }
-        const contentsRef = ref(database, "/users/" + user.uid);
-        set(contentsRef, setData);
-        navigate("/");
     }
 
     return (
@@ -70,13 +75,12 @@ export default function ContentsSelection(props) {
                     <Outer>
                         <h1><CheckSquareOutlined />  あなたの好きなコンテンツを教えてください</h1>
                         <ContentsFollow contentsList={contentsList} checkedList={checkedList} setCheckedList={setCheckedList} />
+                        <h1><ExclamationCircleOutlined />ひとつ以上選択してください。</h1>
                         <SendButton type="primary" onClick={submitContents}>送信</SendButton>
                     </Outer>
                 </Content>
                 <Footer><CustomFooter /></Footer>
             </Layout>
-            
-
         </div>
     )
 }

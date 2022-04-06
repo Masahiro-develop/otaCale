@@ -30,13 +30,13 @@ export default function CustomHeader(props) {
     return (
         <StyledHeader>
             <Row align="middle" justify="space-around">
-                <Col span={9} md={18}>
-                    <Logo src={avatorImg} />
+                <Col span={9} md={14}>
+                    <Logo src={avatorImg} onClick={()=>navigate('/')} />
                 </Col>
-                <Col span={7} md={2}>
+                <Col span={7} md={4}>
                     <CustomButton><Link to={"/contentsSelection"}>設定</Link></CustomButton>
                 </Col>
-                <Col span={7} md={2}>
+                <Col span={7} md={4}>
                     <CustomButton onClick={() => {
                         auth.signOut().then(() => {
                             navigate("/login")
