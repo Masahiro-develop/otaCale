@@ -34,7 +34,7 @@ export default function CustomHeader(props) {
                     <Logo src={avatorImg} onClick={()=>navigate('/')} />
                 </Col>
                 <Col span={7} md={4}>
-                    <CustomButton><Link to={"/contentsSelection"}>設定</Link></CustomButton>
+                    <CustomButton><Link to={"/setting"}>設定</Link></CustomButton>
                 </Col>
                 <Col span={7} md={4}>
                     <CustomButton onClick={() => {

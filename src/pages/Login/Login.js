@@ -85,8 +85,7 @@ export default function Login(props) {
                     alert('メールアドレスが存在しません。');
                 };
             });
-
-    }
+    };
 
     return (
         <div>

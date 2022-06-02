@@ -8,7 +8,6 @@ import dayGridPlugin from '@fullcalendar/daygrid' // a plugin!
 import "./Main.css"
 import swal from 'sweetalert';
 import ReactLoading from "react-loading";
-import { getAuth } from "firebase/auth";
 import { onValue, ref } from "firebase/database";
 import { database } from "../../firebase";
 import { useAuthContext } from "../../AuthContext/AuthContext";

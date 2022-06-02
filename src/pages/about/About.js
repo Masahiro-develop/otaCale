@@ -1,4 +1,3 @@
-import react from "react";
 import styled from "styled-components";
 import CustomFooter from "../../components/CustomFooter";
 import smartphoneImage1 from "../../images/smartphoneScreenShot.png";

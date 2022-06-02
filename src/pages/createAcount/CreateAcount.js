@@ -1,7 +1,7 @@
 import { Button, Input, Space } from "antd";
 import cryptoJs from "crypto-js";
 import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
-import { onValue, ref, set } from "firebase/database";
+import { ref, set } from "firebase/database";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
@@ -109,8 +109,8 @@ export default function CreateAcount(props) {
                         alert("このメールアドレスは既に使用されています。")
                     }
                 });
-        }
-    }
+        };
+    };
 
     return (
         <div>
@@ -123,7 +123,7 @@ export default function CreateAcount(props) {
                         <StyledForm>
                             <StyledInput autoComplete="email" type="email" placeholder="メールアドレス" value={email} onChange={(e) => setEmail(e.target.value)} />
                             <StyledInput autoComplete="new-password" type="password" placeholder="パスワード" value={password} onChange={(e) => setPassword(e.target.value)} />
-                            <Button type="primary" onClick={createAcount}>登録</Button><br />本サービスの利用を開始した場合、<a href="#" onClick={()=>window.open("/termsOfUse")}>利用規約</a>に同意したものとみなします。
+                            <Button type="primary" onClick={createAcount}>登録</Button><br />本サービスの利用を開始した場合、<a href="#" onClick={() => window.open("/termsOfUse")}>利用規約</a>に同意したものとみなします。
                             
                         </StyledForm>
                         
@@ -133,5 +133,5 @@ export default function CreateAcount(props) {
             </Outer>
 
         </div>
-    )
-}
+    );
+};

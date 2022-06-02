@@ -10,6 +10,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import {AuthProvider} from "./AuthContext/AuthContext"
 import About from './pages/about/About';
 import TermsOfUse from './pages/termsOfUse/termsOfUse';
+import Setting from './pages/setting/Setting';
 
 function App() {
 
@@ -25,7 +26,8 @@ function App() {
                             <Route path='/createAcount' element={<CreateAcount />} />
                             <Route path="/" element={<Main />} />
                             <Route path='/contentsSelection' element={<ContentsSelection />} />
-                            <Route path='/614f2eaaffaf673b5cb5258a36e27c17905e85d3' element={<Creation />} />
+                            <Route path='/614f2eaaffaf673b5cb5258a36e27c17905e85d3' element={<Creation />} />\
+                            <Route path='/setting' element={<Setting />} />
                         </Routes>
                     </BrowserRouter>
                 </ConfigProvider>
