@@ -39,8 +39,8 @@ export default function CustomHeader(props) {
                 <Col span={7} md={4}>
                     <CustomButton onClick={() => {
                         auth.signOut().then(() => {
-                            navigate("/login")
-                        })
+                            navigate("/login");
+                        });
                     }}>ログアウト</CustomButton>
                 </Col>
             </Row>

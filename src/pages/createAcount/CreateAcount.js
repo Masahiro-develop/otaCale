@@ -67,7 +67,7 @@ export default function CreateAcount(props) {
 
     const navigate = useNavigate();
 
-    const { user } = useAuthContext();
+    const { user } = getAuth();
 
     useEffect(() => {
         document.title = "アカウント作成";
@@ -97,7 +97,7 @@ export default function CreateAcount(props) {
                     const submitUserData = {
                         email: encryptedEmail
                     };
-                    console.log(submitUserData);
+                    // console.log(submitUserData);
                     set(userRef, submitUserData)
                     navigate("/contentsSelection");
                 })

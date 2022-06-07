@@ -2,10 +2,11 @@ import CustomFooter from "../../components/CustomFooter";
 import CustomHeader from "../../components/CustomHeader";
 import styled from 'styled-components';
 import { Button } from "antd";
-import { useAuthContext } from "../../AuthContext/AuthContext";
-import { deleteUser } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import swal from "sweetalert";
+import { ref, remove } from "firebase/database";
+import { database } from "../../firebase";
+import { getAuth, deleteUser } from "firebase/auth";
 
 const Outer = styled.div`
     height: 100vh;
@@ -43,9 +44,13 @@ export default function Setting(props) {
 
     const navigate = useNavigate();
 
-    const { user } = useAuthContext();
+    const auth = getAuth();
 
-    const deleteUser = () => {
+    const user = auth.currentUser;
+
+    const userRef = ref(database, `/users/${user.uid}`);
+
+    const deleteUserPopUp = () => {
         swal({
             title: '退会',
             text:
@@ -57,9 +62,13 @@ export default function Setting(props) {
         }).then((value) => {
             if (value == 'defeat') {
                 deleteUser(user).then(() => {
+                    remove(userRef)
                     navigate('/createAcount')
                 }).catch((error) => {
                     console.log(error);
+                    if (error.code === 'auth/requires-recent-login') {
+                        alert('ログインから時間が経っているため、一旦ログアウトし、ログインし直してから実行してください。')
+                    }
                 });
             }
         })
@@ -73,7 +82,7 @@ export default function Setting(props) {
                 <ButtonGroup>
                     設定
                     <StyledButton size="large" onClick={() => navigate('/contentsSelection')}>コンテンツ再選択</StyledButton>
-                    <StyledButton size="large" onClick={deleteUser}>退会</StyledButton>
+                    <StyledButton size="large" onClick={deleteUserPopUp}>退会</StyledButton>
                 </ButtonGroup>
             </Inner>
             <CustomFooter />

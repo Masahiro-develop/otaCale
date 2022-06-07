@@ -1,7 +1,7 @@
 import { CheckSquareOutlined, ExclamationCircleOutlined } from "@ant-design/icons/lib/icons";
 import { Button } from "antd";
 import Layout, { Content, Footer, Header } from "antd/lib/layout/layout";
-import { get, onValue, push, ref, set } from "firebase/database";
+import { ref, set } from "firebase/database";
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import ContentsFollow from "../../components/ContentsFollow";
@@ -44,7 +44,7 @@ export default function ContentsSelection(props) {
     }, [])
 
     function submitContents() {
-        console.log(checkedList);
+        // console.log(checkedList);
         if (checkedList.length == 0) {
             alert('1つ以上選択をお願いします。')
         } else {
